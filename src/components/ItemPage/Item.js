@@ -12,7 +12,7 @@ function Item({ item }) {
   return (
     <div>
       <h3>{itemName}</h3>
-      <p>{price}</p>
+      <p>{price} €</p>
       {cartIDs.includes(item.id) ? (
         <p>Item added to cart</p>
       ) : (

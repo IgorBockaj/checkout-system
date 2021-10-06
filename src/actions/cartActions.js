@@ -3,6 +3,9 @@ import {
   REMOVE_FROM_CART,
   INCREMENT_QUANTITY,
   DECREMENT_QUANTITY,
+  CHANGE_PRICE,
+  MOTION_SENSOR_DISCOUNT,
+  SMOKE_SENSOR_DISCOUNT,
 } from "./types";
 
 export const addToCart = (item) => {
@@ -12,6 +15,7 @@ export const addToCart = (item) => {
       id: item.id,
       itemName: item.itemName,
       price: item.price,
+      totalPrice: item.totalPrice,
       quantity: 1,
     },
   };
@@ -40,6 +44,33 @@ export const decrementQuantity = (item) => {
     type: DECREMENT_QUANTITY,
     payload: {
       id: item.id,
+    },
+  };
+};
+
+export const changePrice = (item) => {
+  return {
+    type: CHANGE_PRICE,
+    payload: {
+      id: item.id,
+    },
+  };
+};
+
+export const motionSensorDiscount = (item) => {
+  return {
+    type: MOTION_SENSOR_DISCOUNT,
+    payload: {
+      itemName: item.itemName,
+    },
+  };
+};
+
+export const smokeSensorDiscount = (item) => {
+  return {
+    type: SMOKE_SENSOR_DISCOUNT,
+    payload: {
+      itemName: item.itemName,
     },
   };
 };

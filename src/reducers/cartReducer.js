@@ -3,6 +3,9 @@ import {
   REMOVE_FROM_CART,
   INCREMENT_QUANTITY,
   DECREMENT_QUANTITY,
+  CHANGE_PRICE,
+  MOTION_SENSOR_DISCOUNT,
+  SMOKE_SENSOR_DISCOUNT,
 } from "../actions/types";
 
 const cartReducer = (state = [], action) => {
@@ -17,13 +20,37 @@ const cartReducer = (state = [], action) => {
           ? { ...item, quantity: ++item.quantity }
           : item
       );
-
     case DECREMENT_QUANTITY:
       return state.map((item) =>
         item.id === action.payload.id
           ? { ...item, quantity: --item.quantity }
           : item
       );
+    case CHANGE_PRICE:
+      return state.map((item) =>
+        item.id === action.payload.id
+          ? { ...item, totalPrice: item.quantity * item.price }
+          : item
+      );
+    case MOTION_SENSOR_DISCOUNT:
+      return state.map((item) =>
+        item.itemName === "Motion Sensor" && item.quantity === 3
+          ? {
+              ...item,
+              totalPrice: 65,
+            }
+          : item
+      );
+    case SMOKE_SENSOR_DISCOUNT:
+      return state.map((item) =>
+        item.itemName === "Smoke Sensor" && item.quantity === 2
+          ? {
+              ...item,
+              totalPrice: 35,
+            }
+          : item
+      );
+
     default:
       return state;
   }
