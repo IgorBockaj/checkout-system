@@ -25,18 +25,28 @@ function CartList() {
     if (off20) return <p>{(fullPrice * 0.8).toFixed(2)} €</p>;
     if (off20eur) return <p>{(fullPrice - 20).toFixed(2)} €</p>;
 
-    return fullPrice.toFixed(2);
+    return <p>{fullPrice.toFixed(2)} €</p>;
   };
 
   return cart.length === 0 ? (
-    <h3>Add items to cart</h3>
+    <h3 className="empty-cart_text">Add items to cart</h3>
   ) : (
     <>
+      <div className="table-headings">
+        <h3>Item:</h3>
+        <h3>Price:</h3>
+        <h3>Quantity:</h3>
+      </div>
+
       {cart.map((item) => (
         <CartItem key={item.id} item={item} />
       ))}
-      <h2>Total Price</h2>
-      {displayPrice()}
+
+      <div className="cart-list_total">
+        <h2>Total Price</h2>
+        <div>{displayPrice()}</div>
+      </div>
+
       <Promotion />
       <button onClick={() => dispatch(finalPrice(fullPrice))}>
         <Link to="/checkout">Checkout</Link>

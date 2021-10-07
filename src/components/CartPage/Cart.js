@@ -3,7 +3,7 @@ import CartList from "./CartList";
 
 function Cart() {
   return (
-    <div>
+    <div className="cart-list_container">
       <CartList />
     </div>
   );
