@@ -4,7 +4,7 @@ function CheckoutItem({ item: { itemName, quantity, totalPrice } }) {
   return (
     <div>
       <h4>
-        {quantity} {itemName}: {totalPrice} €
+        {quantity} {itemName}: {totalPrice.toFixed(2)} €
       </h4>
     </div>
   );

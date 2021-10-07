@@ -8,12 +8,12 @@ function CheckoutData() {
 
   return (
     <div>
-      <h3>Your inventory:</h3>
+      <h3>Your cart:</h3>
       {cart.map((item) => (
         <CheckoutItem key={item.id} item={item} />
       ))}
       <h4>Total Price:</h4>
-      {finalPrice[0]} €
+      {finalPrice.length !== 0 ? <p>{finalPrice[0].toFixed(2)} € </p> : null}
     </div>
   );
 }
