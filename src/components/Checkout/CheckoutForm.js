@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import validator from "validator";
 import history from "../../history";
+import { useDispatch } from "react-redux";
+import { orderAndPayCart } from "../../actions/cartActions";
+import { orderAndPayPrice } from "../../actions/priceActions";
+import { orderAndPayPromo } from "../../actions/promoActions";
 
 function CheckoutForm() {
   const [data, setData] = useState({
@@ -12,10 +16,19 @@ function CheckoutForm() {
     cardName: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState(null);
   const [validCard, setValidCard] = useState(false);
   const [validEmail, setValidEmail] = useState(false);
 
   const { email, address, cardNumber, cvv, expDate, cardName } = data;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setErrorMessage(null);
+  }, [validCard]);
+
+  // setTimeout(() => setErrorMessage(null), 5000);
 
   const onChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -27,11 +40,24 @@ function CheckoutForm() {
   };
 
   const onSubmit = (e) => {
-    if (validEmail && validCard) return history.push("/");
+    if (validEmail && validCard === true) {
+      history.push("/");
+      dispatch(orderAndPayPrice());
+      dispatch(orderAndPayPromo());
+      dispatch(orderAndPayCart());
+    } else if (!validEmail) {
+      e.preventDefault();
+      setErrorMessage("Enter Valid Email");
+    } else if (!validCard) {
+      e.preventDefault();
+      setErrorMessage("Enter Valid Card Number");
+    }
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className="checkout-form" onSubmit={onSubmit}>
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
+
       <h3>Personal Information</h3>
       <div>
         <input
@@ -121,7 +147,7 @@ function CheckoutForm() {
         />
       </div>
 
-      <input type="submit" value="Pay" />
+      <button className="order-button">Order & pay</button>
     </form>
   );
 }

@@ -5,6 +5,7 @@ import {
   REMOVE_PROMO_5,
   REMOVE_PROMO_20EUR,
   REMOVE_PROMO_20,
+  ORDER_AND_PAY_PROMO,
 } from "../actions/types";
 
 const promos = {
@@ -27,6 +28,8 @@ const promoReducer = (state = promos, action) => {
       return { ...state, off20: false };
     case REMOVE_PROMO_20EUR:
       return { ...state, off20eur: false };
+    case ORDER_AND_PAY_PROMO:
+      return { off5: false, off20: false, off20eur: false };
 
     default:
       return state;

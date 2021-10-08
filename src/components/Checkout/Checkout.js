@@ -4,10 +4,10 @@ import CheckoutForm from "./CheckoutForm";
 
 function Checkout() {
   return (
-    <>
+    <div className="checkout">
       <CheckoutData />
       <CheckoutForm />
-    </>
+    </div>
   );
 }
 

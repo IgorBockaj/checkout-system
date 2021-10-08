@@ -6,6 +6,7 @@ import {
   CHANGE_PRICE,
   MOTION_SENSOR_DISCOUNT,
   SMOKE_SENSOR_DISCOUNT,
+  ORDER_AND_PAY_CART,
 } from "../actions/types";
 
 const cartReducer = (state = [], action) => {
@@ -50,6 +51,9 @@ const cartReducer = (state = [], action) => {
             }
           : item
       );
+
+    case ORDER_AND_PAY_CART:
+      return [];
 
     default:
       return state;

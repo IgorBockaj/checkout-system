@@ -10,6 +10,7 @@ import EnteredPromo from "./EnteredPromo";
 
 function Promotion() {
   const [input, setInput] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -27,7 +28,10 @@ function Promotion() {
     } else if (input === "20EUROFF") {
       dispatch(enterPromoOff20Eur(input));
     } else {
-      console.error("Invalid Promo Code");
+      setErrorMessage(input);
+      setTimeout(() => {
+        setErrorMessage(null);
+      }, 5000);
     }
 
     setInput("");
@@ -37,6 +41,9 @@ function Promotion() {
     <>
       <EnteredPromo />
       <form className="promo-form">
+        {errorMessage && (
+          <div className="error-message">{`${errorMessage} is not valid Promo Code`}</div>
+        )}
         <h2>Enter Promotion Code</h2>
         <div>
           <input

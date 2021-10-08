@@ -5,6 +5,7 @@ import {
   REMOVE_PROMO_5,
   REMOVE_PROMO_20EUR,
   REMOVE_PROMO_20,
+  ORDER_AND_PAY_PROMO,
 } from "../actions/types";
 
 export const enterPromoOff5 = (code) => {
@@ -43,5 +44,11 @@ export const removePromo20 = () => {
 export const removePromo20Eur = () => {
   return {
     type: REMOVE_PROMO_20EUR,
+  };
+};
+
+export const orderAndPayPromo = () => {
+  return {
+    type: ORDER_AND_PAY_PROMO,
   };
 };

@@ -6,6 +6,7 @@ import {
   CHANGE_PRICE,
   MOTION_SENSOR_DISCOUNT,
   SMOKE_SENSOR_DISCOUNT,
+  ORDER_AND_PAY_CART,
 } from "./types";
 
 export const addToCart = (item) => {
@@ -72,5 +73,11 @@ export const smokeSensorDiscount = (item) => {
     payload: {
       itemName: item.itemName,
     },
+  };
+};
+
+export const orderAndPayCart = () => {
+  return {
+    type: ORDER_AND_PAY_CART,
   };
 };
