@@ -48,8 +48,13 @@ function CartList() {
       </div>
 
       <Promotion />
-      <button onClick={() => dispatch(finalPrice(fullPrice))}>
-        <Link to="/checkout">Checkout</Link>
+      <button
+        className="checkout-button"
+        onClick={() => dispatch(finalPrice(fullPrice))}
+      >
+        <Link className="checkout-button_link" to="/checkout">
+          Checkout
+        </Link>
       </button>
     </>
   );

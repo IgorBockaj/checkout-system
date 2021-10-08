@@ -129,6 +129,7 @@
 .table-headings h3 {
   padding-left: 10px;
   border: 1px solid lightgray;
+  margin-bottom: 20px;
 }
 
 .cart-item {
@@ -152,6 +153,7 @@
 
 .add-remove {
   display: grid;
+  place-items: center;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
 }
@@ -197,8 +199,91 @@
   place-items: center;
 }
 
+.promo-form {
+  width: 500px;
+}
+
+.promo-form h2 {
+  margin-bottom: 20px;
+}
+
+.promo-form div {
+  display: flex;
+  align-items: center;
+}
+
+.promo-form input {
+  width: 80%;
+  height: 40px;
+  padding-left: 10px;
+  border: 2px solid black;
+  font-size: 20px;
+}
+
+.promo-form button {
+  width: 20%;
+  height: 40px;
+  background-color: black;
+  color: white;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.checkout-button {
+  width: 170px;
+  height: 40px;
+  margin-top: 20px;
+  font-size: 20px;
+  background-color: limegreen;
+  border: none;
+}
+
+.checkout-button_link {
+  letter-spacing: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: black;
+  text-decoration: none;
+}
+
+.active-promos {
+  width: 300px;
+  margin: 20px 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.active-promos h2 {
+  margin-bottom: 10px;
+}
+
+.active-promos p {
+  font-size: 18px;
+}
+
+.active-promos button {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.promo-line {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.promo-line div {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* MEDIA QUERIES */
-@media (max-width: 750px) {
+@media (max-width: 800px) {
   .item {
     height: 450px;
     grid-template-columns: 1fr;
@@ -214,6 +299,57 @@
   .item-button button {
     width: 90%;
     height: 50px;
+  }
+
+  .cart-list_container {
+    width: 100%;
+  }
+
+  .cart-item {
+    height: fit-content;
+    font-size: 15px;
+  }
+
+  .add-remove {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    place-items: center;
+    margin: 5px 0;
+  }
+
+  .add-remove button {
+    height: 30px;
+    width: 30px;
+  }
+
+  .cart-item_buttons button {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+
+  .cart-list_total {
+    margin-top: 15px;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .active-promos {
+    width: 100%;
+  }
+
+  .promo-form {
+    width: 300px;
+  }
+
+  .promo-form div {
+    flex-direction: column;
+  }
+
+  .promo-form button,
+  .promo-form input {
+    width: 100%;
   }
 }
 

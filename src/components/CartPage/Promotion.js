@@ -36,15 +36,17 @@ function Promotion() {
   return (
     <>
       <EnteredPromo />
-      <form>
+      <form className="promo-form">
         <h2>Enter Promotion Code</h2>
-        <input
-          type="text"
-          placeholder="Promotion code"
-          value={input}
-          onChange={onChange}
-        />
-        <button onClick={handleSubmit}>Submit</button>
+        <div>
+          <input
+            type="text"
+            placeholder="Promotion code"
+            value={input}
+            onChange={onChange}
+          />
+          <button onClick={handleSubmit}>Add Promo</button>
+        </div>
       </form>
     </>
   );
