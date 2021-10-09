@@ -8,17 +8,18 @@ import { finalPrice } from "../../actions/priceActions";
 function CartList() {
   const cart = useSelector((state) => state.cart);
   const promo = useSelector((state) => state.promo);
-
   const dispatch = useDispatch();
 
   const { off5, off20, off20eur } = promo;
 
+  //calculate prices depending on cart item prices
   const cartPrices = cart.map((item) => item.totalPrice);
 
   const fullPrice = cartPrices.reduce((prevValue, currValue) => {
     return prevValue + currValue;
   }, 0);
 
+  // display price depending on entered promo codes
   const displayPrice = () => {
     if (off5 && off20eur) return <p>{(fullPrice * 0.95 - 20).toFixed(2)} €</p>;
     if (off5) return <p>{(fullPrice * 0.95).toFixed(2)} €</p>;

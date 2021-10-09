@@ -7,6 +7,9 @@ import { orderAndPayPrice } from "../../actions/priceActions";
 import { orderAndPayPromo } from "../../actions/promoActions";
 
 function CheckoutForm() {
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [validCard, setValidCard] = useState(false);
+  const [validEmail, setValidEmail] = useState(false);
   const [data, setData] = useState({
     email: "",
     address: "",
@@ -16,10 +19,6 @@ function CheckoutForm() {
     cardName: "",
   });
 
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [validCard, setValidCard] = useState(false);
-  const [validEmail, setValidEmail] = useState(false);
-
   const { email, address, cardNumber, cvv, expDate, cardName } = data;
 
   const dispatch = useDispatch();
@@ -28,16 +27,17 @@ function CheckoutForm() {
     setErrorMessage(null);
   }, [validCard]);
 
-  // setTimeout(() => setErrorMessage(null), 5000);
-
   const onChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
+  //checks if email format is correct
   const emailChecker = (email) => {
     if (validator.isEmail(email)) return setValidEmail(true);
     return setValidEmail(false);
   };
+
+  //handles contitions when order can be submited
 
   const onSubmit = (e) => {
     if (validEmail && validCard === true) {

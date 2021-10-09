@@ -14,6 +14,7 @@ function CartItem({ item }) {
 
   const dispatch = useDispatch();
 
+  // handle changes in redux when we increment changes in cart
   const handleAdd = () => {
     dispatch(incrementQuantity(item));
     dispatch(changePrice(item));
@@ -21,6 +22,7 @@ function CartItem({ item }) {
     dispatch(smokeSensorDiscount(item));
   };
 
+  // handle changes in redux when we decrement changes in cart
   const handleRemove = () => {
     dispatch(decrementQuantity(item));
     dispatch(changePrice(item));
