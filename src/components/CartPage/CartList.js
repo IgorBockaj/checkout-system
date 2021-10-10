@@ -19,12 +19,26 @@ function CartList() {
     return prevValue + currValue;
   }, 0);
 
+  let promoFullPrice;
+
   // display price depending on entered promo codes
   const displayPrice = () => {
-    if (off5 && off20eur) return <p>{(fullPrice * 0.95 - 20).toFixed(2)} €</p>;
-    if (off5) return <p>{(fullPrice * 0.95).toFixed(2)} €</p>;
-    if (off20) return <p>{(fullPrice * 0.8).toFixed(2)} €</p>;
-    if (off20eur) return <p>{(fullPrice - 20).toFixed(2)} €</p>;
+    if (off5 && off20eur) {
+      promoFullPrice = fullPrice * 0.95 - 20;
+      return <p>{(fullPrice * 0.95 - 20).toFixed(2)} €</p>;
+    }
+    if (off5) {
+      promoFullPrice = fullPrice * 0.95;
+      return <p>{(fullPrice * 0.95).toFixed(2)} €</p>;
+    }
+    if (off20) {
+      promoFullPrice = fullPrice * 0.8;
+      return <p>{(fullPrice * 0.8).toFixed(2)} €</p>;
+    }
+    if (off20eur) {
+      promoFullPrice = fullPrice - 20;
+      return <p>{(fullPrice - 20).toFixed(2)} €</p>;
+    }
 
     return <p>{fullPrice.toFixed(2)} €</p>;
   };
@@ -51,7 +65,9 @@ function CartList() {
       <Promotion />
       <button
         className="checkout-button"
-        onClick={() => dispatch(finalPrice(fullPrice))}
+        onClick={() =>
+          dispatch(finalPrice(promoFullPrice ? promoFullPrice : fullPrice))
+        }
       >
         <Link className="checkout-button_link" to="/checkout">
           Checkout
