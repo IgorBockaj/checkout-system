@@ -35,7 +35,7 @@ function Promotion() {
       (off5 && input === "20%OFF") ||
       (off20eur && input === "20%OFF")
     ) {
-      setWarningMessage(`You can't combine those two codes.`);
+      setWarningMessage(`You can't combine those Promo Codes.`);
       setTimeout(() => {
         setWarningMessage(null);
       }, 5000);

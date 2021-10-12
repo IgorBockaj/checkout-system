@@ -89,15 +89,38 @@
   font-weight: 600;
 }
 
+.item-cart-connection {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+  place-items: center;
+  font-weight: 600;
+}
+
 .item-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
 }
 
-.item-button button {
+.item-to-cart-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+  grid-gap: 10px;
+}
+
+.item-to-cart-buttons button {
+  border: none;
+  height: 50px;
+  width: 50px;
+  background-color: black;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.add-to-cart {
   font-size: 20px;
   font-weight: 600;
   height: 100px;
