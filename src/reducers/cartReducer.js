@@ -35,19 +35,26 @@ const cartReducer = (state = [], action) => {
       );
     case MOTION_SENSOR_DISCOUNT:
       return state.map((item) =>
-        item.itemName === "Motion Sensor" && item.quantity === 3
+        item.itemName === "Motion Sensor"
           ? {
               ...item,
-              totalPrice: 65,
+              totalPrice:
+                item.quantity % 3 === 0
+                  ? (65 * item.quantity) / 3
+                  : (65 * (item.quantity - (item.quantity % 3))) / 3 +
+                    item.price * (item.quantity % 3),
             }
           : item
       );
     case SMOKE_SENSOR_DISCOUNT:
       return state.map((item) =>
-        item.itemName === "Smoke Sensor" && item.quantity === 2
+        item.itemName === "Smoke Sensor"
           ? {
               ...item,
-              totalPrice: 35,
+              totalPrice:
+                item.quantity % 2 === 0
+                  ? (35 * item.quantity) / 2
+                  : (35 * (item.quantity - 1)) / 2 + item.price,
             }
           : item
       );
