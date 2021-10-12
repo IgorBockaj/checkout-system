@@ -25,7 +25,7 @@ function CartList() {
   const displayPrice = () => {
     if (off5 && off20eur) {
       promoFullPrice = fullPrice * 0.95 - 20;
-      return <p>{(fullPrice * 0.95 - 20).toFixed(2)} €</p>;
+      return <p>{((fullPrice - 20) * 0.95).toFixed(2)} €</p>;
     }
     if (off5) {
       promoFullPrice = fullPrice * 0.95;

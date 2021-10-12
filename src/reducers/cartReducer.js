@@ -21,18 +21,21 @@ const cartReducer = (state = [], action) => {
           ? { ...item, quantity: ++item.quantity }
           : item
       );
+
     case DECREMENT_QUANTITY:
       return state.map((item) =>
         item.id === action.payload.id
           ? { ...item, quantity: --item.quantity }
           : item
       );
+
     case CHANGE_PRICE:
       return state.map((item) =>
         item.id === action.payload.id
           ? { ...item, totalPrice: item.quantity * item.price }
           : item
       );
+
     case MOTION_SENSOR_DISCOUNT:
       return state.map((item) =>
         item.itemName === "Motion Sensor"

@@ -11,9 +11,13 @@ import EnteredPromo from "./EnteredPromo";
 function Promotion() {
   const [input, setInput] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
+  const [warningMessage, setWarningMessage] = useState(null);
 
   const cart = useSelector((state) => state.cart);
+  const promo = useSelector((state) => state.promo);
   const dispatch = useDispatch();
+
+  const { off5, off20, off20eur } = promo;
 
   const onChange = (e) => {
     setInput(e.target.value);
@@ -25,7 +29,17 @@ function Promotion() {
     // conditions when promo codes can be added
     // seting error message
 
-    if (input === "20%OFF") {
+    if (
+      (off20 && input === "5%OFF") ||
+      (off20 && input === "20EUROFF") ||
+      (off5 && input === "20%OFF") ||
+      (off20eur && input === "20%OFF")
+    ) {
+      setWarningMessage(`You can't combine those two codes.`);
+      setTimeout(() => {
+        setWarningMessage(null);
+      }, 5000);
+    } else if (input === "20%OFF") {
       dispatch(enterPromoOff20(input));
     } else if (input === "5%OFF") {
       dispatch(enterPromoOff5(input));
@@ -60,6 +74,10 @@ function Promotion() {
         {errorMessage && (
           <div className="error-message">{`${errorMessage}`}</div>
         )}
+        {warningMessage && (
+          <div className="warning-message">{`${warningMessage}`}</div>
+        )}
+
         <h2>Enter Promotion Code</h2>
         <div>
           <input
