@@ -1,14 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addToCart,
-  decrementQuantity,
-  incrementQuantity,
-  changePrice,
-  motionSensorDiscount,
-  smokeSensorDiscount,
-  removeFromCart,
-} from "../../actions/cartActions";
+import { addToCart } from "../../actions/cartActions";
+import CartButtons from "../CartButtons";
 
 function Item({ item }) {
   const { itemName, price } = item;
@@ -18,20 +11,6 @@ function Item({ item }) {
   const dispatch = useDispatch();
 
   const imgName = itemName.toLowerCase().split(" ").join("-");
-
-  const handleAdd = () => {
-    dispatch(incrementQuantity(item));
-    dispatch(changePrice(item));
-    dispatch(motionSensorDiscount(item));
-    dispatch(smokeSensorDiscount(item));
-  };
-
-  const handleRemove = () => {
-    dispatch(decrementQuantity(item));
-    dispatch(changePrice(item));
-    dispatch(motionSensorDiscount(item));
-    dispatch(smokeSensorDiscount(item));
-  };
 
   return (
     <div className="item">
@@ -51,21 +30,7 @@ function Item({ item }) {
           <div className="item-cart-connection">
             <p>Item added to cart</p>
             {cart.map((item) =>
-              item.itemName === itemName ? (
-                <div>
-                  <div className="item-to-cart-buttons">
-                    <p>{item.quantity}</p>
-                    <button onClick={handleAdd}>+</button>
-                    {item.quantity > 1 && (
-                      <button onClick={handleRemove}>-</button>
-                    )}
-
-                    <button onClick={() => dispatch(removeFromCart(item))}>
-                      <i className="material-icons">delete</i>
-                    </button>
-                  </div>
-                </div>
-              ) : null
+              item.itemName === itemName ? <CartButtons item={item} /> : null
             )}
           </div>
         ) : (
